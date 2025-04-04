@@ -53,8 +53,10 @@ public class Service {
     }
 
     public Message deleteMessage(int message_id) {
-        Message deleted_message = getMessage(message_id);
-        return this.DAO.deleteMessage(message_id);
+        if (getMessage(message_id) != null) {
+            return this.DAO.deleteMessage(message_id);
+        }
+        return null;
     }
 
     public Message updateMessage(String message_text, int message_id) {
