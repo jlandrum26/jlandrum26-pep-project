@@ -32,7 +32,11 @@ public class DAO {
 
     public Account getAccount(String username) {
         Connection connection = ConnectionUtil.getConnection();
-        ;
+        try {
+            String sql = "";
+        } catch(SQLException e){
+            System.out.println(e.getMessage());
+        }
     }
 
     public Account createAccount(Account account) {
@@ -56,7 +60,6 @@ public class DAO {
         }
         return null;
     }
-    }
 
     public Message createMessage(Message message) {
         Connection connection = ConnectionUtil.getConnection();
@@ -79,6 +82,5 @@ public class DAO {
             System.out.println(e.getMessage());
         }
         return null;
-    }
     }
 }
