@@ -55,4 +55,14 @@ public class Service {
     public Message deleteMessage(int message_id) {
         return this.DAO.deleteMessage(message_id);
     }
+
+    public Message updateMessage(Message message, int message_id) {
+        if (message.message_text.length() <= 255 && !(message.message_text.isEmpty())) {
+            this.DAO.updateMessage(message.message_text, message_id);
+            if (message.message_text.equals(getMessage(message_id).message_text)) {
+                return getMessage(message_id);
+            }
+        }
+        return null;
+    }
 }

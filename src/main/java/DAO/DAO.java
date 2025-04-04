@@ -179,4 +179,21 @@ public class DAO {
         }
         return null;
     }
+
+    public void updateMessage(String message_text, int message_id) {
+        Connection connection = ConnectionUtil.getConnection();
+        try {
+            //Write SQL logic here
+            String sql = "UPDATE message SET departure_city=? WHERE message_id = ?;";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+
+            //write PreparedStatement setString and setInt methods here.
+            preparedStatement.setString(1,message_text);
+            preparedStatement.setInt(3,message_id);
+
+            preparedStatement.executeUpdate();
+        }catch(SQLException e){
+            System.out.println(e.getMessage());
+        }
+    }
 }
