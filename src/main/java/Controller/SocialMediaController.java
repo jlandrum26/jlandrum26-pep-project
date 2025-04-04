@@ -47,15 +47,15 @@ public class SocialMediaController {
         context.json("sample text");
     }
 
-    private void getAllMessagesHandler(Context context){
+    private void getAllMessagesHandler(Context context) {
         List<Message> messages = Service.getAllMessages();
         context.json(messages);
     }
 
-    private void registerHandler(Context context) {
+    private void registerHandler(Context context) throws JsonProcessingException {
         ObjectMapper om = new ObjectMapper();
         Account account = om.readValue(context.body(), Account.class);
-        Account addedAccount = Service.registerAccount(account);
+        Account addedAccount = Service.addAccount(account);
         if(addedAccount!=null){
             context.json(om.writeValueAsString(addedAccount));
         }else{
@@ -68,7 +68,7 @@ public class SocialMediaController {
         context.json("sample text");
     }
 
-    private void postMessageHandler(Context context) {
+    private void postMessageHandler(Context context) throws JsonProcessingException {
         ObjectMapper om = new ObjectMapper();
         Message message = om.readValue(context.body(), Message.class);
         Message addedMessage = Service.addMessage(message);
