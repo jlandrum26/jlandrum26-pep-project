@@ -38,15 +38,17 @@ public class Service {
     }
 
     public Account login(Account account) {
-        if (this.DAO.getAccount(account.username) != null
-        && this.DAO.getAccount(account.username).password == account.password) {
-            return this.DAO.getAccount(account.username);
+        if (this.DAO.verifyAccount(account.username, account.password) != null) {
+            return this.DAO.verifyAccount(account.username, account.password);
         }
         return null;
     }
 
     public Message getMessage(int message_id) {
-        return this.DAO.getMessage(message_id);
+        if (this.DAO.getMessage(message_id) != null) {
+            return this.DAO.getMessage(message_id);
+        }
+        return ;
     }
 
     public List<Message> getAllMessagesFromAccount(int account_id) {

@@ -52,15 +52,36 @@ public class DAO {
         return null;
     }
 
+    public Account verifyAccount(String username, String password) {
+        Connection connection = ConnectionUtil.getConnection();
+        try {
+            String sql = "SELECT * FROM account WHERE username = ? AND password = ?";
+            
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+
+            preparedStatement.setString(1,username);
+            preparedStatement.setString(2,password);
+
+            ResultSet rs = preparedStatement.executeQuery();
+            while(rs.next()){
+                Account account = new Account(rs.getInt("account_id"), rs.getString("username"),
+                        rs.getString("password"));
+                return account;
+            }
+        }catch(SQLException e){
+            System.out.println(e.getMessage());
+        }
+        return null;
+    }
+
     public Account createAccount(Account account) {
         Connection connection = ConnectionUtil.getConnection();
         try {
-            String sql = "INSERT INTO account (account_id, username, password) VALUES (?, ?, ?);" ;
+            String sql = "INSERT INTO account (username, password) VALUES (?, ?);" ;
             PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
-            preparedStatement.setInt(1,account.getAccount_id());
-            preparedStatement.setString(2,account.getUsername());
-            preparedStatement.setString(3,account.getPassword());
+            preparedStatement.setString(1,account.getUsername());
+            preparedStatement.setString(2,account.getPassword());
             
             preparedStatement.executeUpdate();
             ResultSet pkeyResultSet = preparedStatement.getGeneratedKeys();
@@ -77,13 +98,12 @@ public class DAO {
     public Message createMessage(Message message) {
         Connection connection = ConnectionUtil.getConnection();
         try {
-            String sql = "INSERT INTO message (message_id, posted_by, message_text, time_posted_epoch) VALUES (?, ?, ?, ?);" ;
+            String sql = "INSERT INTO message (posted_by, message_text, time_posted_epoch) VALUES (?, ?, ?);" ;
             PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
-            preparedStatement.setInt(1,message.getMessage_id());
-            preparedStatement.setInt(2,message.getPosted_by());
-            preparedStatement.setString(3,message.getMessage_text());
-            preparedStatement.setLong(4,message.getTime_posted_epoch());
+            preparedStatement.setInt(1,message.getPosted_by());
+            preparedStatement.setString(2,message.getMessage_text());
+            preparedStatement.setLong(3,message.getTime_posted_epoch());
             
             preparedStatement.executeUpdate();
             ResultSet pkeyResultSet = preparedStatement.getGeneratedKeys();

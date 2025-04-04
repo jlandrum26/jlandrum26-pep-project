@@ -50,6 +50,7 @@ public class SocialMediaController {
     private void getAllMessagesHandler(Context context) {
         List<Message> messages = Service.getAllMessages();
         context.json(messages);
+        context.status(200);
     }
 
     private void registerHandler(Context context) throws JsonProcessingException {
@@ -58,6 +59,7 @@ public class SocialMediaController {
         Account addedAccount = Service.addAccount(account);
         if(addedAccount!=null){
             context.json(om.writeValueAsString(addedAccount));
+            context.status(200);
         }else{
             context.status(400);
         }
@@ -69,6 +71,7 @@ public class SocialMediaController {
         Account login = Service.login(account);
         if(login!=null){
             context.json(om.writeValueAsString(login));
+            context.status(200);
         }else{
             context.status(401);
         }
@@ -80,6 +83,7 @@ public class SocialMediaController {
         Message addedMessage = Service.addMessage(message);
         if(addedMessage!=null){
             context.json(om.writeValueAsString(addedMessage));
+            context.status(200);
         }else{
             context.status(400);
         }
@@ -88,11 +92,13 @@ public class SocialMediaController {
     private void getMessageHandler(Context context) {
         int message_id = Integer.parseInt(context.pathParam("message_id"));
         context.json(Service.getMessage(message_id));
+        context.status(200);
     }
 
     private void deleteMessageHandler(Context context) {
         int message_id = Integer.parseInt(context.pathParam("message_id"));
         context.json(Service.deleteMessage(message_id));
+        context.status(200);
     }
 
     private void patchMessageHandler(Context context) throws JsonProcessingException {
@@ -102,6 +108,7 @@ public class SocialMediaController {
     private void getAllMessagesFromUserHandler(Context context) {
         int account_id = Integer.parseInt(context.pathParam("account_id"));
         context.json(Service.getAllMessagesFromAccount(account_id));
+        context.status(200);
     }
 
 }
