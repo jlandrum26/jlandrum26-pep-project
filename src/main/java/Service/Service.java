@@ -46,10 +46,14 @@ public class Service {
     }
 
     public Message getMessage(int message_id) {
-        return DAO.getMessage(message_id);
+        return this.DAO.getMessage(message_id);
     }
 
     public List<Message> getAllMessagesFromAccount(int account_id) {
-        return DAO.getAllMessagesFromAccount(account_id);
+        return this.DAO.getAllMessagesFromAccount(account_id);
+    }
+
+    public Message deleteMessage(int message_id) {
+        return this.DAO.deleteMessage(message_id);
     }
 }

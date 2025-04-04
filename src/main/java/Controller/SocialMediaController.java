@@ -86,11 +86,13 @@ public class SocialMediaController {
     }
 
     private void getMessageHandler(Context context) {
-        context.json(Service.getMessage(context.pathParam("message_id")));
+        int message_id = Integer.parseInt(context.pathParam("message_id"));
+        context.json(Service.getMessage(message_id));
     }
 
     private void deleteMessageHandler(Context context) {
-        context.json(Service.deleteMessage(context.pathParam("message_id")));
+        int message_id = Integer.parseInt(context.pathParam("message_id"));
+        context.json(Service.deleteMessage(message_id));
     }
 
     private void patchMessageHandler(Context context) throws JsonProcessingException {
@@ -98,7 +100,8 @@ public class SocialMediaController {
     }
 
     private void getAllMessagesFromUserHandler(Context context) {
-        context.json(Service.getAllMessagesFromAccount(context.pathParam("account_id")));
+        int account_id = Integer.parseInt(context.pathParam("account_id"));
+        context.json(Service.getAllMessagesFromAccount(account_id));
     }
 
 }
