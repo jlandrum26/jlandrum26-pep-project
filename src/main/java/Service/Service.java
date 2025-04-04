@@ -21,8 +21,9 @@ public class Service {
     }
 
     public Account addAccount(Account account) {
-        if () {
-            ;
+        if (this.DAO.getAccount(account.username) == null
+        && this.DAO.verify(account.username, account.password)) {
+            this.DAO.createAccount(account);
             return account;
         }
         return null;
@@ -36,11 +37,11 @@ public class Service {
         return null;
     }
 
-    public boolean login(String username, String password) {
+    public Account login(Account account) {
         if () {
             ;
-            return true;
+            return account;
         }
-        return false;
+        return null;
     }
 }
