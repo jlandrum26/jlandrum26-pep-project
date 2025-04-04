@@ -44,4 +44,12 @@ public class Service {
         }
         return null;
     }
+
+    public Message getMessage(int message_id) {
+        return DAO.getMessage(message_id);
+    }
+
+    public List<Message> getAllMessagesFromAccount(int account_id) {
+        return DAO.getAllMessagesFromAccount(account_id);
+    }
 }
