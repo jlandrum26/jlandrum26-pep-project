@@ -35,4 +35,12 @@ public class Service {
         }
         return null;
     }
+
+    public boolean login(String username, String password) {
+        if () {
+            ;
+            return true;
+        }
+        return false;
+    }
 }
