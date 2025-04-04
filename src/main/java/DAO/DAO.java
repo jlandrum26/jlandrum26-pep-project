@@ -129,7 +129,7 @@ public class DAO {
             ResultSet rs = preparedStatement.executeQuery();
             while(rs.next()){
                 Message message = new Message(rs.getInt("message_id"), rs.getInt("posted_by"),
-                        rs.getString("message_text"),rs.getLong("time_posted_epoch"));
+                        rs.getString("message_text"), rs.getLong("time_posted_epoch"));
                 return message;
             }
         }catch(SQLException e){
@@ -162,11 +162,11 @@ public class DAO {
     public Message deleteMessage(int message_id) {
         Connection connection = ConnectionUtil.getConnection();
         try {
-            String sql = "DELETE * FROM message WHERE message_id = ?";
+            String sql = "DELETE FROM message WHERE message_id = ?";
             
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
-            preparedStatement.setInt(1,message_id);
+            preparedStatement.setInt(1, message_id);
 
             ResultSet rs = preparedStatement.executeQuery();
             while(rs.next()){
@@ -187,7 +187,7 @@ public class DAO {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
             preparedStatement.setString(1,message_text);
-            preparedStatement.setInt(3,message_id);
+            preparedStatement.setInt(2,message_id);
 
             preparedStatement.executeUpdate();
         }catch(SQLException e){

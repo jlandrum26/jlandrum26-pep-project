@@ -110,6 +110,7 @@ public class SocialMediaController {
             context.status(400);
         }else{
             context.json(om.writeValueAsString(updatedMessage));
+            context.status(200);
         }
     }
 
