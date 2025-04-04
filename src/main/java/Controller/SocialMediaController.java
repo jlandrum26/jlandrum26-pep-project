@@ -27,11 +27,14 @@ public class SocialMediaController {
     public Javalin startAPI() {
         Javalin app = Javalin.create();
         app.get("example-endpoint", this::exampleHandler);
-        app.get("/accounts", this::exampleHandler);
-        app.get("/messages", this::exampleHandler);
-        app.get("/accounts", this::exampleHandler);
-        app.get("messages", this::exampleHandler);
-
+        app.post("/register", this::registerHandler);
+        app.get("/messages", this::getAllMessagesHandler);
+        app.post("/login", this::loginHandler);
+        app.post("/messages", this::postMessageHandler);
+        app.get("/messages/{message_id}", this::getMessageHandler);
+        app.delete("/messages/{message_id}", this::deleteMessageHandler);
+        app.patch("/messages/{message_id}", this::patchMessageHandler);
+        app.get("accounts/{account_id}/messages", this::getAllMessagesFromUserHandler);
         app.start(8080);
         return app;
     }
@@ -44,5 +47,36 @@ public class SocialMediaController {
         context.json("sample text");
     }
 
+    private void getAllMessagesHandler(Context context){
+        context.json("sample text");
+    }
+
+    private void registerHandler(Context context) {
+        context.json("sample text");
+    }
+
+    private void loginHandler(Context context) {
+        context.json("sample text");
+    }
+
+    private void postMessageHandler(Context context) {
+        context.json("sample text");
+    }
+
+    private void getMessageHandler(Context context) {
+        context.json("sample text");
+    }
+
+    private void deleteMessageHandler(Context context) {
+        context.json("sample text");
+    }
+
+    private void patchMessageHandler(Context context) {
+        context.json("sample text");
+    }
+
+    private void getAllMessagesFromUserHandler(Context context) {
+        context.json("sample text");
+    }
 
 }
