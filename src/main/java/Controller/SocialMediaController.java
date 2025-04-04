@@ -86,7 +86,7 @@ public class SocialMediaController {
     }
 
     private void getMessageHandler(Context context) {
-        context.json("sample text");
+        context.json(Service.getMessage(context.pathParam("message_id")));
     }
 
     private void deleteMessageHandler(Context context) {
@@ -98,7 +98,7 @@ public class SocialMediaController {
     }
 
     private void getAllMessagesFromUserHandler(Context context) {
-        context.json("sample text");
+        context.json(Service.getAllMessagesFromAccount(context.pathParam("account_id")));
     }
 
 }
