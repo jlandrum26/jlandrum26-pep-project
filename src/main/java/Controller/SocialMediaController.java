@@ -93,7 +93,7 @@ public class SocialMediaController {
         context.json("sample text");
     }
 
-    private void patchMessageHandler(Context context) {
+    private void patchMessageHandler(Context context) throws JsonProcessingException {
         context.json("sample text");
     }
 
