@@ -90,7 +90,7 @@ public class SocialMediaController {
     }
 
     private void deleteMessageHandler(Context context) {
-        context.json("sample text");
+        context.json(Service.deleteMessage(context.pathParam("message_id")));
     }
 
     private void patchMessageHandler(Context context) throws JsonProcessingException {
