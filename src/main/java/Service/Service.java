@@ -54,7 +54,9 @@ public class Service {
 
     public Message deleteMessage(int message_id) {
         if (getMessage(message_id) != null) {
-            return this.DAO.deleteMessage(message_id);
+            Message deletedMessage = getMessage(message_id);
+            this.DAO.deleteMessage(message_id);
+            return deletedMessage;
         }
         return null;
     }
