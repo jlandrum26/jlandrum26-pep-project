@@ -56,12 +56,11 @@ public class Service {
         return this.DAO.deleteMessage(message_id);
     }
 
-    public Message updateMessage(Message message, int message_id) {
-        if (message.message_text.length() <= 255 && !(message.message_text.isEmpty())) {
-            this.DAO.updateMessage(message.message_text, message_id);
-            if (message.message_text.equals(getMessage(message_id).message_text)) {
-                return getMessage(message_id);
-            }
+    public Message updateMessage(String message_text, int message_id) {
+        if (message_text.length() <= 255 && !(message_text.isEmpty())
+        && !(message_text.isBlank())) {
+            this.DAO.updateMessage(message_text, message_id);
+            return getMessage(message_id);
         }
         return null;
     }
