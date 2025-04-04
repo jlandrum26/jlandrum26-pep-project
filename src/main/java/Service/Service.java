@@ -45,10 +45,7 @@ public class Service {
     }
 
     public Message getMessage(int message_id) {
-        if (this.DAO.getMessage(message_id) != null) {
-            return this.DAO.getMessage(message_id);
-        }
-        return new Message();
+        return this.DAO.getMessage(message_id);
     }
 
     public List<Message> getAllMessagesFromAccount(int account_id) {
