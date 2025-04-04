@@ -53,6 +53,7 @@ public class Service {
     }
 
     public Message deleteMessage(int message_id) {
+        Message deleted_message = getMessage(message_id);
         return this.DAO.deleteMessage(message_id);
     }
 
