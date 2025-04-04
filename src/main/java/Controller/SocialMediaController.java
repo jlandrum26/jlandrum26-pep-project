@@ -54,7 +54,13 @@ public class SocialMediaController {
 
     private void registerHandler(Context context) {
         ObjectMapper om = new ObjectMapper();
-        context.json("sample text");
+        Account account = om.readValue(context.body(), Account.class);
+        Account addedAccount = Service.registerAccount(account);
+        if(addedAccount!=null){
+            context.json(om.writeValueAsString(addedAccount));
+        }else{
+            context.status(400);
+        }
     }
 
     private void loginHandler(Context context) {
@@ -64,7 +70,13 @@ public class SocialMediaController {
 
     private void postMessageHandler(Context context) {
         ObjectMapper om = new ObjectMapper();
-        context.json("sample text");
+        Message message = om.readValue(context.body(), Message.class);
+        Message addedMessage = Service.addMessage(message);
+        if(addedMessage!=null){
+            context.json(om.writeValueAsString(addedMessage));
+        }else{
+            context.status(400);
+        }
     }
 
     private void getMessageHandler(Context context) {
