@@ -91,13 +91,23 @@ public class SocialMediaController {
 
     private void getMessageHandler(Context context) {
         int message_id = Integer.parseInt(context.pathParam("message_id"));
-        context.json(Service.getMessage(message_id));
+        Message returnedMessage = Service.getMessage(message_id);
+        if (returnedMessage != null) {
+            context.json(returnedMessage);
+        } else {
+            context.json("");
+        }
         context.status(200);
     }
 
     private void deleteMessageHandler(Context context) {
         int message_id = Integer.parseInt(context.pathParam("message_id"));
-        context.json(Service.deleteMessage(message_id));
+        Message deletedMessage = Service.deleteMessage(message_id);
+        if (deletedMessage != null) {
+            context.json(deletedMessage);
+        } else {
+            context.json("");
+        }
         context.status(200);
     }
 
